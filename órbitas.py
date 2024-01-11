@@ -1,6 +1,7 @@
 #Este código simula el movimiento de varios cuerpos celestes en el espacio, incluyendo la Tierra, Marte, el Sol y una nave espacial.
 #VPython (vpython): Se utiliza para la visualización tridimensional de objetos y escenarios.
 #Tkinter (tkinter): Se utiliza para crear una interfaz gráfica simple para obtener la entrada del usuario.
+#La biblioteca de tiempo (time) en Python proporciona diversas funciones para trabajar con el tiempo y la fecha.
 
 from vpython import *
 import tkinter as tk
@@ -34,7 +35,6 @@ wmarte = vmarte / rmarte
 # El usuario ingresa el radio de la nave espacial, su velocidad y el paso de tiempo.
 rship, vship, dt = get_user_input()
 
-# El usuario ingresa el radio de la nave espacial, su velocidad y el paso de tiempo.
 a = (rship + rmarte) * 0.5
 T = a**1.5
 ANG = pi - wmarte * T / 2
@@ -48,7 +48,7 @@ ca = cos(ANG)
 sca = sin(pimedios + ANG)
 cca = cos(pimedios + ANG)
 
-# Calculate minimum influence radius of Mars
+# Calcular el radio mínimo de influencia
 Rmin = rmarte * (mmarte)**0.4
 
 # Se crean esferas representando el Sol, la Tierra, Marte y la nave espacial, con sus respectivos parámetros.
@@ -88,7 +88,7 @@ with open(f'posiciones_{timestamp}.txt', 'w') as file:
     
     # Inicia un bucle infinito que representa el tiempo continuo en la simulación.
     while True:
-        rate(100)
+        rate(100)    # Limita la velocidad de la simulación a 100 iteraciones por segundo.
         for body in [Earth, Mars, Ship]:
             if body == Ship:
                 # Se calculan los vectores de posición de la nave espacial con respecto a Marte (DM) y al Sol (DS).
